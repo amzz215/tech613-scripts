@@ -1,0 +1,23 @@
+name: Run my Bash script
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-script:
+    runs-on: ubuntu-24.04
+
+    timeout-minutes: 20
+
+    steps:
+      - name: Download repository files
+        uses: actions/checkout@v4
+
+      - name: Copy ZIP into home directory
+        run: cp nodejs20-sparta-tictactoe-v1.zip "$HOME/"
+
+      - name: Run Bash script
+        run: bash provision_app.sh
